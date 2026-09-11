@@ -24,8 +24,8 @@ echo "===== Checking Wrong Context ====="
 ls -Z /var/www/html/testdir/index.html
 
 echo "===== Checking AVC Denials ====="
-echo "===== Correcting SELinux Context ====="
 grep "denied" /var/log/audit/audit.log | tail -n 5 || ausearch -m avc -ts recent
+echo "===== Correcting SELinux Context ====="
 restorecon -v /var/www/html/testdir/index.html
 echo "===== Checking Correct Context ====="
 ls -Z /var/www/html/testdir/index.html
